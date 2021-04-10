@@ -22,16 +22,19 @@ public class EmployeeMvcController {
 	
 	private EmployeeServiceImpl empService;
 	
+	//Constructor based injection
 	public  EmployeeMvcController(EmployeeServiceImpl empService) {
 		this.empService=empService;
 	}
 
-	@RequestMapping
-	public String getAllEmployees(Model model) {
-		List<EmployeeBean> list = service.getAllEmployees();
+	@RequestMapping(value = "getEmployees")
+	public List<EmployeeBean> getAllEmployees(Model model) {
+//		List<EmployeeBean> list = 
+		return empService.getAllEmployees();
 
-		model.addAttribute("employees", list);
-		return "list-employees";
+		/*
+		 * model.addAttribute("employees", list); return "list-employees";
+		 */
 	}
 
 	@RequestMapping(path = { "/edit", "/edit/{id}" })
